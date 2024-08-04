@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:nil/nil.dart';
 import 'package:two_pane_view/responsive_view.dart';
 import 'package:two_pane_view/two_pane_view.dart';
 
@@ -10,24 +11,16 @@ void main() {
       Builder(
         builder: (BuildContext context) {
           double screenSize = MediaQuery.of(context).size.width;
-          Responsive screenBreakpoint = Responsive.xs;
-          int totalRatio = 12;
-          int leftRatio = 1;
-
           return MaterialApp(
-            home: ResponsiveView(
-              screenBreakpoint: screenBreakpoint,
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: <Widget>[
-                Expanded(
-                  flex: screenBreakpoint.narrower(screenSize)
-                      ? 1 : leftRatio,
-                  child: const Text('Left Pane'),
-                ),
-                Expanded(
-                  flex: screenBreakpoint.narrower(screenSize)
-                      ? 1 : (totalRatio - leftRatio),
-                  child: const Text('Right Pane'),
+            home: Row(
+              children: <Widget> [
+                TwoPaneView(
+                    leftPane: Responsive.xs.narrower(screenSize)
+                        ? nil : const Text('Left Pane'),
+                    rightPane: const Text('Right Pane'),
+                    ratio: 3,
+                    screenBreakpoint: Responsive.xs,
+                    padding: const EdgeInsets.only(left: 20.0, right: 20.0)
                 ),
               ],
             ),
