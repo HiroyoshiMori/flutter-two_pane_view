@@ -9,9 +9,6 @@ Give two cells the ratio it shall occupy at every size category assuming the tot
 
 ## Usage
 
-TODO: Include short and useful examples for package users. Add longer examples
-to `/example` folder.
-
 ```dart
 double screenSize = MediaQuery.of(context).size.width;
 const twoPane = MaterialApp(
